@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { View, Alert } from 'react-native';
-import { TextInput, Button, HelperText, Text } from 'react-native-paper';
+import { View, Alert, StyleSheet } from 'react-native';
+import { TextInput, Button, Text } from 'react-native-paper';
 import { db } from '../src/firebaseConnection';
 import { collection, addDoc } from 'firebase/firestore';
 import { useCard } from '../context/CardContext';
-
 
 const FormCard = () => {
   const { adicionarCard } = useCard();
@@ -48,8 +47,8 @@ const FormCard = () => {
   };
 
   return (
-    <View style={{ padding: 16 }}>
-      <Text variant="titleLarge" style={{ marginBottom: 16 }}>
+    <View style={styles.container}>
+      <Text variant="titleLarge" style={styles.titulo}>
         Nova Assinatura
       </Text>
 
@@ -58,7 +57,7 @@ const FormCard = () => {
         value={nomeAssinatura}
         onChangeText={setNomeAssinatura}
         mode="outlined"
-        style={{ marginBottom: 12 }}
+        style={styles.input}
       />
 
       <TextInput
@@ -67,7 +66,7 @@ const FormCard = () => {
         onChangeText={setValorMensal}
         keyboardType="numeric"
         mode="outlined"
-        style={{ marginBottom: 12 }}
+        style={styles.input}
       />
 
       <TextInput
@@ -76,7 +75,7 @@ const FormCard = () => {
         onChangeText={setDataRenovacao}
         placeholder="YYYY-MM-DD"
         mode="outlined"
-        style={{ marginBottom: 12 }}
+        style={styles.input}
       />
 
       <TextInput
@@ -85,7 +84,7 @@ const FormCard = () => {
         onChangeText={setCategoria}
         placeholder="Ex: Streaming, Educação"
         mode="outlined"
-        style={{ marginBottom: 20 }}
+        style={styles.input}
       />
 
       <Button
@@ -93,6 +92,8 @@ const FormCard = () => {
         onPress={handleSalvar}
         loading={loading}
         disabled={loading}
+        buttonColor="#2e7d32"
+        style={styles.botao}
       >
         Adicionar Assinatura
       </Button>
@@ -101,3 +102,22 @@ const FormCard = () => {
 };
 
 export default FormCard;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  titulo: {
+    marginBottom: 16,
+    fontWeight: 'bold',
+  },
+  input: {
+    marginBottom: 12,
+    backgroundColor: '#fff',
+  },
+  botao: {
+    marginTop: 12,
+    borderRadius: 6,
+  },
+});

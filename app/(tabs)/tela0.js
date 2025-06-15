@@ -1,26 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import CardPrincipal from '../../components/cardF.js'
+import HomeScreen from '../../components/HomeScreen.js';
 import { useState } from 'react';
 
 export default function App() {
-
-      const [card, setativaCard] = useState(false);
-
+  const [ativaCard, setAtivaCard] = useState(false);
   const handleCard = () => {
+    setAtivaCard(!ativaCard);
+  };
 
-        setativaCard(!card)
-
-    }
-  return (
-    <Pressable  style={{flex:1}} onPress={handleCard }>
-    <View style={styles.container} >
-      {card && <CardPrincipal/>}
-     
-      <StatusBar style="auto" />
-    </View>
-    </Pressable>
-  );
+  return <HomeScreen />;
 }
 
 const styles = StyleSheet.create({

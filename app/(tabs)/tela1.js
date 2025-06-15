@@ -3,7 +3,7 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import { router } from 'expo-router';
 
 // Importa seu componente FormCard (ajuste o caminho conforme sua estrutura)
-import FormCard from '../../components/formCard';
+import FormCard from '../../components/FormCard';
 
 export default function App() {
   return (
