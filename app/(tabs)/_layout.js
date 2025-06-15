@@ -18,13 +18,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <Ionicons size={28} name="checkmark-circle" color={color} />,
         }}
       />
-      <Tabs.Screen
-        name="tela2"
-        options={{
-          title: 'Algo2',
-          tabBarIcon: ({ color }) => <Ionicons size={28} name="checkmark-circle" color={color} />,
-        }}
-      />
+      
       <Tabs.Screen
         name="tela3"
         options={{

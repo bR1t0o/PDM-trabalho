@@ -3,8 +3,11 @@ import { View, Alert } from 'react-native';
 import { TextInput, Button, HelperText, Text } from 'react-native-paper';
 import { db } from '../src/firebaseConnection';
 import { collection, addDoc } from 'firebase/firestore';
+import { useCard } from '../context/CardContext';
+
 
 const FormCard = () => {
+  const { adicionarCard } = useCard();
   const [nomeAssinatura, setNomeAssinatura] = useState('');
   const [valorMensal, setValorMensal] = useState('');
   const [dataRenovacao, setDataRenovacao] = useState('');
@@ -31,6 +34,7 @@ const FormCard = () => {
         categoria: categoria.trim(),
       });
       Alert.alert('Sucesso', 'Assinatura salva com sucesso!');
+      adicionarCard(nomeAssinatura, valorMensal, dataRenovacao, categoria);
       setNomeAssinatura('');
       setValorMensal('');
       setDataRenovacao('');

@@ -1,9 +1,9 @@
-import { StyleSheet, TextInput, View, useWindowDimensions,FlatList,Pressable } from 'react-native';
+import { StyleSheet, Text, View, useWindowDimensions,FlatList,Pressable } from 'react-native';
 import { useCard } from '../context/CardContext.js';
 import card_styles from './card_styles.js';
 
 
-// Componente de CARD INDIVIDUAL (agora recebe "item" como prop)
+
 const CardItem = ({ item }) => {
   const { width: largura, height: altura } = useWindowDimensions();
   const { removerCard } = useCard(); 
@@ -11,41 +11,30 @@ const CardItem = ({ item }) => {
   
 
   return (
-     <Pressable onLongPress={()=>{removerCard(item.id)}}>
-    <View style={[getStyle(largura, altura).container, { marginBottom: 16 }]}>
-     
-      <View style={card_sec.header}>
-        <TextInput
-          style={[card_styles.titulo]}
-          placeholder="Insira um título"
-          placeholderTextColor='rgba(250, 250, 250, 1)'
-          value={item.titulo} // Agora usa item.titulo
-          editable={false}
-        />
-      </View>
-      <View style={card_sec.body}>
-        <View style={card_sec.tags}></View>
-        <View style={[card_sec.textBox, { borderRadius: Math.min(largura, altura) * 0.036 }]}>
-          <TextInput
-            style={[card_styles.descricao]}
-            placeholder="Descreva o que aconteceu"
-            placeholderTextColor="rgba(250, 250, 250, 1)"
-            multiline={true}
-            maxLength={140}
-            value={item.descricao} // Agora usa item.descricao
-            editable={false}
-          />
+     <Pressable onLongPress={() => removerCard(item.id)}>
+      <View style={[getStyle(largura, altura).container, { marginBottom: 16 }]}>
+        <View style={card_sec.header}>
+          <Text style={[card_styles.titulo]}>{item.titulo}</Text>
+        </View>
+
+        <View style={card_sec.body}>
+          <View style={card_sec.tags}>
+            <Text style={{ color: '#fff' }}>Categoria: {item.categoria}</Text>
+          </View>
+
+         
+            <Text style={{ color: '#fff' }}>Valor: {item.valor}</Text>
+            <Text style={{ color: '#fff' }}>Renovação: {item.data}</Text>
+          
         </View>
       </View>
-      
-    </View>
     </Pressable>
   );
 };
 
 
 const CardSecundario = () => {
-  const { cardsSalvos } = useCard(); // Pega a lista do contexto
+  const { cardsSalvos } = useCard(); 
 
   return (
     <FlatList style={{ flex: 1 }}
@@ -69,7 +58,7 @@ function getStyle(largura, altura) {
 
             backgroundColor: 'rgba(0, 0, 0, 0.6)',
             width: largura * 0.88,
-            height: altura * 0.36,
+            height: altura * 0.18,
             borderRadius: largura * 0.0658,
             gap: largura * 0.038,
             boxShadow: '0 4 12 0 rgba(0,0,0,0.5)',
